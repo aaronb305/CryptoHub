@@ -9,9 +9,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
 @HiltViewModel
-class CoinViewModel(
+class CoinViewModel @Inject constructor(
     private val coinApiRepository: CoinApiRepository,
     private val dispatcher: CoroutineDispatcher
 ) : ViewModel(){
@@ -23,14 +24,14 @@ class CoinViewModel(
         viewModelScope.launch(dispatcher) {
             try {
                 val response = coinApiRepository.getTrendingCoins()
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        _coinData.postValue(CoinResponse.SUCCESS(it))
-                    } ?: throw Exception("Response is null")
-                }
-                else {
-                    throw Exception("Unsuccessful response")
-                }
+//                if (response.isSuccessful) {
+//                    response.body()?.let {
+//                        _coinData.postValue(CoinResponse.SUCCESS(it))
+//                    } ?: throw Exception("Response is null")
+//                }
+//                else {
+//                    throw Exception("Unsuccessful response")
+//                }
             }
             catch (e: Exception) {
                 _coinData.postValue(CoinResponse.ERROR(e))

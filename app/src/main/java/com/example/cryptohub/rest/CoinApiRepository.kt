@@ -4,6 +4,8 @@ import com.example.cryptohub.model.allcoins.CoinInfo
 import com.example.cryptohub.model.coindata.CoinData
 import com.example.cryptohub.model.search.SearchCoins
 import com.example.cryptohub.model.trending.TrendingCoins
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 
 class CoinApiRepositoryImpl(
@@ -13,11 +15,15 @@ class CoinApiRepositoryImpl(
     override suspend fun getCoinData(id: String): Response<CoinData> =
         coinGeckoApi.getCoinData(id)
 
-    override suspend fun getAllCoins(): Response<List<CoinInfo>> =
-        coinGeckoApi.getAllCoins()
+    override fun getAllCoins(): Flow<List<CoinInfo>> =
+        flow {
+            coinGeckoApi.getAllCoins()
+        }
 
-    override suspend fun getTrendingCoins(): Response<TrendingCoins> =
-        coinGeckoApi.getTrendingCoins()
+    override fun getTrendingCoins(): Flow<TrendingCoins> =
+        flow {
+            coinGeckoApi.getTrendingCoins()
+        }
 
     override suspend fun searchForCoins(query: String): Response<SearchCoins> =
         coinGeckoApi.searchForCoins(query)
@@ -25,7 +31,7 @@ class CoinApiRepositoryImpl(
 
 interface CoinApiRepository {
     suspend fun getCoinData(id: String) : Response<CoinData>
-    suspend fun getAllCoins() : Response<List<CoinInfo>>
-    suspend fun getTrendingCoins() : Response<TrendingCoins>
+    fun getAllCoins() : Flow<List<CoinInfo>>
+    fun getTrendingCoins() : Flow<TrendingCoins>
     suspend fun searchForCoins(query : String) : Response<SearchCoins>
 }
