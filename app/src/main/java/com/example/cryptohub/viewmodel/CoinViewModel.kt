@@ -9,9 +9,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
 @HiltViewModel
-class CoinViewModel(
+class CoinViewModel @Inject constructor(
     private val coinApiRepository: CoinApiRepository,
     private val dispatcher: CoroutineDispatcher
 ) : ViewModel(){
