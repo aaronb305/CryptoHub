@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cryptohub.model.coindata.CoinData
+import com.example.cryptohub.model.coinsbymarketcap.CoinItem
 import com.example.cryptohub.rest.CoinApiRepository
 import com.example.cryptohub.utils.CoinResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,7 +26,7 @@ class CoinViewModel @Inject constructor(
         Log.d("view model", "view model created")
     }
 
-    var coin : CoinData? = null
+    var coin : CoinItem? = null
 
     private val _coinData : MutableLiveData<CoinResponse> = MutableLiveData(CoinResponse.LOADING)
     val coinData : LiveData<CoinResponse> get() = _coinData
@@ -38,11 +39,23 @@ class CoinViewModel @Inject constructor(
 //        }
 //    }
 
+    fun getCoinsByMarketCap(pageNumber : Int = 1) {
+        viewModelScope.launch(dispatcher) {
+            coinApiRepository.getCoinsByMarketCap(pageNumber = pageNumber).collect {
+                _coinData.postValue(it)
+            }
+        }
+    }
+
     fun getAllCoins() {
         viewModelScope.launch(dispatcher) {
             coinApiRepository.getAllCoins().collect {
                 _coinData.postValue(it)
             }
         }
+    }
+
+    fun resetState() {
+        _coinData.postValue(CoinResponse.DEFAULT)
     }
 }

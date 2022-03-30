@@ -1,14 +1,18 @@
 package com.example.cryptohub.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cryptohub.R
 import com.example.cryptohub.databinding.CryptoItemBinding
-import com.example.cryptohub.model.coindata.CoinData
+import com.example.cryptohub.model.coinsbymarketcap.CoinItem
+import java.lang.Math.abs
 
 class CryptoAdapter(
-    private val cryptoList: MutableList<CoinData> = mutableListOf(),
-    private val onCoinClicked : (CoinData) -> Unit
+    private val cryptoList: MutableList<CoinItem> = mutableListOf(),
+    private val onCoinClicked : (CoinItem) -> Unit
 ) : RecyclerView.Adapter<CryptoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CryptoViewHolder {
@@ -17,7 +21,7 @@ class CryptoAdapter(
             parent,
             false
         )
-        return CryptoViewHolder(view, onCoinClicked)
+        return CryptoViewHolder(view, parent.context, onCoinClicked)
     }
 
     override fun onBindViewHolder(holder: CryptoViewHolder, position: Int) {
@@ -26,24 +30,48 @@ class CryptoAdapter(
 
     override fun getItemCount(): Int = cryptoList.size
 
-    fun updateCoins(newCoins: List<CoinData>) {
-        cryptoList.clear()
+    fun updateCoins(newCoins: List<CoinItem>) {
+        val initialSize = cryptoList.size
         cryptoList.addAll(newCoins)
-        notifyDataSetChanged()
+        notifyItemRangeInserted(initialSize, newCoins.size)
     }
 }
 
 class CryptoViewHolder(
     private val binding: CryptoItemBinding,
-    private val onCoinClicked : (CoinData) -> Unit
+    private val context : Context,
+    private val onCoinClicked : (CoinItem) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(coin: CoinData) {
-        binding.ticker.text = coin.symbol
+    fun bind(coin: CoinItem) {
+        binding.ticker.text = coin.symbol.uppercase()
         binding.marketCapRank.text = coin.marketCapRank.toString()
-        binding.price.text = coin.marketData.currentPrice.usd.toString()
-        binding.change.text = coin.marketData.priceChange24h.toString()
-        binding.marketCap.text = coin.marketData.marketCap.usd.toString()
+
+        val price = if (coin.currentPrice < 1) {
+            "%.6f".format(coin.currentPrice)
+        }
+        else {
+            "%.2f".format(coin.currentPrice)
+        }
+        binding.price.text = "\$${price}"
+
+        val priceChange = "%.2f".format(abs(coin.priceChangePercentage24h))
+        binding.change.text = "${priceChange}%"
+
+        when {
+            coin.priceChangePercentage24h < 0 -> {
+                binding.change.setTextColor(ContextCompat.getColor(context, R.color.red))
+            }
+            coin.priceChangePercentage24h > 0 -> {
+                binding.change.setTextColor(ContextCompat.getColor(context, R.color.green))
+            }
+            else -> {
+                binding.change.setTextColor(ContextCompat.getColor(context, R.color.white))
+            }
+        }
+
+        val marketCap = "%.0f".format(coin.marketCap)
+        binding.marketCap.text = "\$${marketCap}"
 
         binding.coinItem.setOnClickListener {
             onCoinClicked.invoke(coin)

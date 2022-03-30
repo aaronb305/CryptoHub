@@ -9,18 +9,35 @@
         android:id="@id/cryptocurrency"
         android:name="com.example.cryptohub.views.CryptoFragment"
         android:label="fragment_crypto"
-        tools:layout="@layout/fragment_crypto" />
+        tools:layout="@layout/fragment_crypto" >
+        <action
+            android:id="@+id/action_cryptocurrency_to_detailsFragment2"
+            app:destination="@id/detailsFragment2" />
+    </fragment>
 
     <fragment
         android:id="@id/derivatives"
         android:name="com.example.cryptohub.views.DerivativesFragment"
         android:label="fragment_derivatives"
-        tools:layout="@layout/fragment_derivatives" />
+        tools:layout="@layout/fragment_derivatives" >
+        <action
+            android:id="@+id/action_derivatives_to_detailsFragment2"
+            app:destination="@id/detailsFragment2" />
+    </fragment>
 
     <fragment
         android:id="@id/exchanges"
         android:name="com.example.cryptohub.views.ExchangesFragment"
         android:label="fragment_exchanges"
-        tools:layout="@layout/fragment_exchanges" />
+        tools:layout="@layout/fragment_exchanges" >
+        <action
+            android:id="@+id/action_exchanges_to_detailsFragment2"
+            app:destination="@id/detailsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment2"
+        android:name="com.example.cryptohub.views.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
 
 </navigation>
