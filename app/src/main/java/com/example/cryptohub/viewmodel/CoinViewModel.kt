@@ -11,6 +11,8 @@ import com.example.cryptohub.rest.CoinApiRepository
 import com.example.cryptohub.utils.CoinResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -41,8 +43,14 @@ class CoinViewModel @Inject constructor(
 
     fun getCoinsByMarketCap(pageNumber : Int = 1) {
         _coinData.postValue(CoinResponse.LOADING)
+        Log.d("view model", "entered function")
         viewModelScope.launch(dispatcher) {
             coinApiRepository.getCoinsByMarketCap(pageNumber = pageNumber).collect {
+                _coinData.postValue(it)
+                Log.d("view model", "value posted to live data")
+            }
+            coinApiRepository.coinResponse.collect {
+                Log.d("view model", "response value posted to live data")
                 _coinData.postValue(it)
             }
         }

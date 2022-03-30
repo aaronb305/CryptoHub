@@ -2,6 +2,9 @@ package com.example.cryptohub
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.lifecycle.VIEW_MODEL_STORE_OWNER_KEY
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -19,7 +22,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.navBar.setupWithNavController(findNavController(R.id.navContainer))
+        val navController = findNavController(R.id.navContainer)
+        binding.navBar.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener{ _, nd: NavDestination, _->
+            if (nd.id == R.id.detailsFragment || nd.id == R.id.detailsFragment2) {
+                binding.navBar.visibility = View.GONE
+            }
+        }
 
     }
 }

@@ -1,6 +1,7 @@
 package com.example.cryptohub.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -9,6 +10,7 @@ import com.example.cryptohub.R
 import com.example.cryptohub.databinding.CryptoItemBinding
 import com.example.cryptohub.model.coinsbymarketcap.CoinItem
 import java.lang.Math.abs
+import java.util.logging.Logger
 
 class CryptoAdapter(
     private val cryptoList: MutableList<CoinItem> = mutableListOf(),
@@ -31,6 +33,7 @@ class CryptoAdapter(
     override fun getItemCount(): Int = cryptoList.size
 
     fun updateCoins(newCoins: List<CoinItem>) {
+        Log.d("adapter", "update coins called")
         val initialSize = cryptoList.size
         cryptoList.addAll(newCoins)
         notifyItemRangeInserted(initialSize, newCoins.size)
@@ -44,6 +47,7 @@ class CryptoViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(coin: CoinItem) {
+        Log.d("adapter", "on bind called")
         binding.ticker.text = coin.symbol.uppercase()
         binding.marketCapRank.text = coin.marketCapRank.toString()
 

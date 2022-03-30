@@ -1,47 +1,37 @@
 package com.example.cryptohub.rest
 
-import com.example.cryptohub.model.allcoins.CoinInfo
-import com.example.cryptohub.model.coindata.CoinData
-import com.example.cryptohub.model.search.SearchCoins
-import com.example.cryptohub.model.trending.TrendingCoins
+import android.util.Log
 import com.example.cryptohub.utils.CoinResponse
-import com.example.cryptohub.utils.responseTryCatch
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Response
+import java.lang.Exception
 
 class CoinApiRepositoryImpl(
     private val coinGeckoApi: CoinGeckoApi
 ) : CoinApiRepository {
 
-    override suspend fun getCoinData(id: String): Response<CoinData> =
-        coinGeckoApi.getCoinData(id)
+    override fun getCoinData(id: String): Flow<CoinResponse> =
+        flow {
+            responseTryCatch { coinGeckoApi.getCoinData(id) }
+        }
 
     override fun getAllCoins(): Flow<CoinResponse> =
         flow {
-            val response = coinGeckoApi.getAllCoins()
-            try {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        emit(CoinResponse.SUCCESS(it))
-                    } ?: throw Exception("Response is null")
-                }
-                else {
-                    throw Exception("Unsuccessful response")
-                }
-            }
-            catch (e: Exception) {
-                emit(CoinResponse.ERROR(e))
-            }
+            responseTryCatch {  coinGeckoApi.getAllCoins() }
         }
 
-//    override fun getTrendingCoins(): Flow<CoinResponse> =
-//        responseTryCatch<CoinResponse>(
-//            coinGeckoApi.getTrendingCoins()
-//        )
+    override fun getTrendingCoins(): Flow<CoinResponse> =
+        flow {
+            responseTryCatch { coinGeckoApi.getTrendingCoins() }
+        }
 
-    override suspend fun searchForCoins(query: String): Response<SearchCoins> =
-        coinGeckoApi.searchForCoins(query)
+    override fun searchForCoins(query: String): Flow<CoinResponse> =
+        flow {
+            responseTryCatch {  coinGeckoApi.searchForCoins(query) }
+        }
 
     override fun getCoinsByMarketCap(
         currency: String,
@@ -50,32 +40,66 @@ class CoinApiRepositoryImpl(
         pageNumber: Int
     ): Flow<CoinResponse> =
         flow {
-            val response = coinGeckoApi.getCoinsByMarketCap(pageNumber = pageNumber)
-            try {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        emit(CoinResponse.SUCCESS(it))
-                    } ?: throw Exception("Response is null")
-                }
-                else {
-                    throw Exception("Unsuccessful response")
-                }
+            Log.d("repository", "started flow")
+//            try {
+//                val response = coinGeckoApi.getCoinsByMarketCap()
+//                if (response.isSuccessful) {
+//                    response.body()?.let {
+//                        emit(CoinResponse.SUCCESS(it))
+//                    } ?: throw Exception("Response is null")
+//                }
+//                else {
+//                    throw Exception("Unsuccessful response")
+//                }
+//            }
+//            catch (e: Exception) {
+//                emit(CoinResponse.ERROR(e))
+//            }
+            responseTryCatch { coinGeckoApi.getCoinsByMarketCap() }
+            Log.d("repository", "end flow")
+        }
+
+    private val _coinResponse: MutableStateFlow<CoinResponse> =
+        MutableStateFlow(CoinResponse.LOADING)
+
+    override val coinResponse : StateFlow<CoinResponse>
+    get() = _coinResponse
+
+    private suspend fun <T> responseTryCatch(response : suspend () -> Response<T>)  {
+        Log.d("utils", "entered response try catch")
+        try {
+            val result = response()
+            Log.d("utils", "entered response try block")
+            if (result.isSuccessful) {
+                Log.d("utils", "entered response success")
+                result.body()?.let {
+                    _coinResponse.value = CoinResponse.SUCCESS(it)
+                } ?: throw Exception("Response is null")
             }
-            catch (e: Exception) {
-                emit(CoinResponse.ERROR(e))
+            else {
+                Log.d("utils", "entered response failed")
+                throw Exception("Unsuccessful response")
             }
         }
+        catch (e: Exception) {
+            Log.d("utils", "entered response catch block")
+            Log.e("utils", e.localizedMessage)
+            _coinResponse.value = CoinResponse.ERROR(e)
+        }
+    }
 }
 
 interface CoinApiRepository {
-    suspend fun getCoinData(id: String) : Response<CoinData>
+    fun getCoinData(id: String) : Flow<CoinResponse>
     fun getAllCoins() : Flow<CoinResponse>
-//    fun getTrendingCoins() : Flow<CoinResponse>
-    suspend fun searchForCoins(query : String) : Response<SearchCoins>
+    fun getTrendingCoins() : Flow<CoinResponse>
+    fun searchForCoins(query : String) : Flow<CoinResponse>
     fun getCoinsByMarketCap(
         currency : String = "usd",
         order : String = "market_cap_desc",
         amount : Int = 100,
         pageNumber : Int = 1
     ) : Flow<CoinResponse>
+
+    val coinResponse : StateFlow<CoinResponse>
 }
