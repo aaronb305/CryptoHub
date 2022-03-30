@@ -53,6 +53,12 @@ class CryptoFragment : BaseFragment() {
             })
         }
 
+        binding.swipeToRefresh.setOnRefreshListener {
+            viewModel.getCoinsByMarketCap()
+            pageNumber = 1
+            binding.swipeToRefresh.isRefreshing = true
+        }
+
         viewModel.coinData.observe(viewLifecycleOwner) {
             when (it) {
                 is CoinResponse.LOADING -> {
@@ -60,17 +66,21 @@ class CryptoFragment : BaseFragment() {
                 }
                 is CoinResponse.SUCCESS<*> -> {
                     binding.loadingBar.visibility = View.GONE
+                    binding.swipeToRefresh.isRefreshing = false
                     val coins = it.response as List<CoinItem>
                     cryptoAdapter.updateCoins(coins)
+                    viewModel.resetState()
                 }
                 is CoinResponse.ERROR -> {
                     binding.loadingBar.visibility = View.GONE
+                    binding.swipeToRefresh.isRefreshing = false
                     Log.e("crypto fragment", it.error.localizedMessage)
+                    viewModel.resetState()
                 }
             }
         }
 
-        viewModel.getCoinsByMarketCap(1)
+        viewModel.getCoinsByMarketCap()
 
         // Inflate the layout for this fragment
         return binding.root

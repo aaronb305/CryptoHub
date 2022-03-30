@@ -40,6 +40,7 @@ class CoinViewModel @Inject constructor(
 //    }
 
     fun getCoinsByMarketCap(pageNumber : Int = 1) {
+        _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
             coinApiRepository.getCoinsByMarketCap(pageNumber = pageNumber).collect {
                 _coinData.postValue(it)
