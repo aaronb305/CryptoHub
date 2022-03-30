@@ -51,7 +51,7 @@ class CryptoViewHolder(
             "%.6f".format(coin.currentPrice)
         }
         else {
-            "%.2f".format(coin.currentPrice)
+            "%,.2f".format(coin.currentPrice)
         }
         binding.price.text = "\$${price}"
 
@@ -70,7 +70,7 @@ class CryptoViewHolder(
             }
         }
 
-        val marketCap = "%.0f".format(coin.marketCap)
+        val marketCap = "%,.0f".format(coin.marketCap)
         binding.marketCap.text = "\$${marketCap}"
 
         binding.coinItem.setOnClickListener {

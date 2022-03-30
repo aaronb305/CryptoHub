@@ -18,7 +18,7 @@
         android:id="@+id/homeContainer"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="650dp"
         app:navGraph="@navigation/home_nav"
         app:defaultNavHost="false"
         app:layout_constraintStart_toStartOf="parent"

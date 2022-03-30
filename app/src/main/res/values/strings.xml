@@ -9,4 +9,9 @@
     <string name="cryptocurrency">Cryptocurrency</string>
     <string name="exchanges">Exchanges</string>
     <string name="derivatives">Derivatives</string>
+    <string name="rank">Rank</string>
+    <string name="ticker">Ticker</string>
+    <string name="price_usd">Price (USD)</string>
+    <string name="_24h">24H %</string>
+    <string name="market_cap">Market Cap</string>
 </resources>
