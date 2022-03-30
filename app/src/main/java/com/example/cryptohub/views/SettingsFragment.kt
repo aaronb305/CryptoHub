@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.cryptohub.databinding.FragmentSettingsBinding
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : BaseFragment() {
 
     private val binding by lazy {
         FragmentSettingsBinding.inflate(layoutInflater)

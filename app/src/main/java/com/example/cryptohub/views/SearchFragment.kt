@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.cryptohub.R
 import com.example.cryptohub.databinding.FragmentSearchBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class SearchFragment : Fragment() {
+class SearchFragment : BaseFragment() {
 
     private val binding by lazy {
         FragmentSearchBinding.inflate(layoutInflater)
@@ -18,6 +19,8 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val value = viewModel.coinData.value
         // Inflate the layout for this fragment
         return binding.root
     }

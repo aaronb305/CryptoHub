@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.cryptohub.R
-import com.example.cryptohub.databinding.FragmentTrendingBinding
+import com.example.cryptohub.databinding.FragmentExchangesBinding
 
-class TrendingFragment : BaseFragment() {
+class ExchangesFragment : BaseFragment() {
 
     private val binding by lazy {
-        FragmentTrendingBinding.inflate(layoutInflater)
+        FragmentExchangesBinding.inflate(layoutInflater)
     }
 
     override fun onCreateView(

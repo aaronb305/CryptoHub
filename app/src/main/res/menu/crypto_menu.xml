@@ -8,19 +8,19 @@
 
     <item
         android:id="@id/trendingFragment"
-        android:title="Trending"
+        android:title="@string/trending"
         android:icon="@drawable/trending">
     </item>
 
     <item
         android:id="@id/searchFragment"
-        android:title="Search"
+        android:title="@string/search"
         android:icon="@drawable/search">
     </item>
 
     <item
         android:id="@id/settingsFragment"
-        android:title="Settings"
+        android:title="@string/settings"
         android:icon="@drawable/settings">
     </item>
 

@@ -1,4 +1,4 @@
-package com.example.cryptohub.viewmodel
+package com.example.cryptohub.utils
 
 sealed class CoinResponse {
     object LOADING : CoinResponse()

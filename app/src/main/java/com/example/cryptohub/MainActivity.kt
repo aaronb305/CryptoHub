@@ -6,7 +6,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.cryptohub.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy {
@@ -18,5 +20,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.navBar.setupWithNavController(findNavController(R.id.navContainer))
+
     }
 }

@@ -1,12 +1,15 @@
 package com.example.cryptohub.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cryptohub.rest.CoinApiRepository
+import com.example.cryptohub.utils.CoinResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
@@ -17,24 +20,25 @@ class CoinViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcher
 ) : ViewModel(){
 
+    init {
+        Log.d("view model", "view model created")
+    }
+
     private val _coinData : MutableLiveData<CoinResponse> = MutableLiveData(CoinResponse.LOADING)
     val coinData : LiveData<CoinResponse> get() = _coinData
 
-    fun getTrendingCoins() {
+//    fun getTrendingCoins() {
+//        viewModelScope.launch(dispatcher) {
+//            coinApiRepository.getTrendingCoins().collect {
+//                _coinData.postValue(it)
+//            }
+//        }
+//    }
+
+    fun getAllCoins() {
         viewModelScope.launch(dispatcher) {
-            try {
-                val response = coinApiRepository.getTrendingCoins()
-//                if (response.isSuccessful) {
-//                    response.body()?.let {
-//                        _coinData.postValue(CoinResponse.SUCCESS(it))
-//                    } ?: throw Exception("Response is null")
-//                }
-//                else {
-//                    throw Exception("Unsuccessful response")
-//                }
-            }
-            catch (e: Exception) {
-                _coinData.postValue(CoinResponse.ERROR(e))
+            coinApiRepository.getAllCoins().collect {
+                _coinData.postValue(it)
             }
         }
     }

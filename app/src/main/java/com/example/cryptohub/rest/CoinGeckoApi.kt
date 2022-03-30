@@ -28,7 +28,7 @@ interface CoinGeckoApi {
     suspend fun getTrendingCoins() : Response<TrendingCoins>
 
     companion object {
-        const val BASE_URL = "api.coingecko.com/api/v3/"
+        const val BASE_URL = "https://api.coingecko.com/api/v3/"
         private const val COINS_PATH = "coins/"
         private const val ALL_COINS_PATH = "${COINS_PATH}list/"
         private const val SEARCH_PATH = "search/"
