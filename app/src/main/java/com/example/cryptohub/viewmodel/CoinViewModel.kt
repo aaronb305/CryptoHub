@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cryptohub.model.coindata.CoinData
 import com.example.cryptohub.rest.CoinApiRepository
 import com.example.cryptohub.utils.CoinResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,6 +24,8 @@ class CoinViewModel @Inject constructor(
     init {
         Log.d("view model", "view model created")
     }
+
+    var coin : CoinData? = null
 
     private val _coinData : MutableLiveData<CoinResponse> = MutableLiveData(CoinResponse.LOADING)
     val coinData : LiveData<CoinResponse> get() = _coinData

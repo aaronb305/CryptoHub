@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.cryptohub.R
+import com.example.cryptohub.adapter.CryptoAdapter
 import com.example.cryptohub.databinding.FragmentMainBinding
 
 class MainFragment : BaseFragment() {

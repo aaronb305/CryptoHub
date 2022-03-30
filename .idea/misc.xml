@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/search.xml" value="0.257" />
         <entry key="app/src/main/res/drawable/settings.xml" value="0.257" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/crypto_item.xml" value="0.33125" />
         <entry key="app/src/main/res/layout/fragment_crypto.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_derivatives.xml" value="0.2376237623762376" />
         <entry key="app/src/main/res/layout/fragment_exchanges.xml" value="0.2376237623762376" />

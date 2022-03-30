@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/coinItem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="5">
+
+        <TextView
+            android:id="@+id/marketCapRank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rank"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/ticker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TKR"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="price"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="change"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/marketCap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="market cap"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

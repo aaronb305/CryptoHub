@@ -28,5 +28,10 @@
         android:name="com.example.cryptohub.views.TrendingFragment"
         android:label="fragment_trending"
         tools:layout="@layout/fragment_trending" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.cryptohub.views.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
 
 </navigation>
