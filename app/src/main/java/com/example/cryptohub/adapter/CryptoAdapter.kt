@@ -33,7 +33,7 @@ class CryptoAdapter(
     override fun getItemCount(): Int = cryptoList.size
 
     fun updateCoins(newCoins: List<CoinItem>) {
-        Log.d("adapter", "update coins called")
+        Log.d("crypto adapter", "update coins called")
         val initialSize = cryptoList.size
         cryptoList.addAll(newCoins)
         notifyItemRangeInserted(initialSize, newCoins.size)
@@ -47,7 +47,7 @@ class CryptoViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(coin: CoinItem) {
-        Log.d("adapter", "on bind called")
+        Log.d("crypto adapter", "on bind called")
         binding.ticker.text = coin.symbol.uppercase()
         binding.marketCapRank.text = coin.marketCapRank.toString()
 

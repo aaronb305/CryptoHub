@@ -21,14 +21,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/rank"/>
+            android:text="@string/rank"
+            android:textStyle="bold"/>
 
-        <ImageView
+        <TextView
             android:id="@+id/picture"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="@string/coin"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/ticker"
@@ -36,7 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/ticker"/>
+            android:text="@string/ticker"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/name"
@@ -44,7 +48,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_weight="2"
-            android:text="@string/name"/>
+            android:text="@string/name"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/priceBTC"
@@ -52,7 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center"
-            android:text="Price BTC"/>
+            android:text="@string/price_btc"
+            android:textStyle="bold"/>
 
 
     </LinearLayout>

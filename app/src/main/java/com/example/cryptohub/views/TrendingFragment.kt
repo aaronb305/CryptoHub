@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cryptohub.R
 import com.example.cryptohub.adapter.TrendingAdapter
 import com.example.cryptohub.databinding.FragmentTrendingBinding
@@ -23,7 +24,7 @@ class TrendingFragment : BaseFragment() {
 
     private val trendingAdapter by lazy {
         TrendingAdapter(onTrendingClicked = {
-            viewModel.coinId = it.id
+            viewModel.coinId = it.item.id
             findNavController().navigate(R.id.action_trendingFragment_to_detailsFragment)
         })
     }
@@ -33,6 +34,20 @@ class TrendingFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        binding.recycler.apply {
+            layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            adapter = trendingAdapter
+        }
+
+        binding.swipeToRefresh.setOnRefreshListener {
+            viewModel.getTrendingCoins()
+            binding.swipeToRefresh.isRefreshing = true
+        }
+
         viewModel.coinData.observe(viewLifecycleOwner) {
             when (it) {
                 is CoinResponse.LOADING -> {
@@ -41,14 +56,15 @@ class TrendingFragment : BaseFragment() {
                 is CoinResponse.SUCCESS<*> -> {
                     binding.loadingBar.visibility = View.GONE
                     binding.swipeToRefresh.isRefreshing = false
-                    val coins = it.response as List<Item>
+                    val response = it.response as TrendingCoins
+                    val coins = response.coins
                     trendingAdapter.updateTrendingCoins(coins)
                     viewModel.resetState()
                 }
                 is CoinResponse.ERROR -> {
                     binding.loadingBar.visibility = View.GONE
                     binding.swipeToRefresh.isRefreshing = false
-                    Log.e("crypto fragment", it.error.localizedMessage)
+                    Log.e("trending fragment", it.error.localizedMessage)
                     viewModel.resetState()
                 }
             }

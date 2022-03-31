@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_home_nav"
+            app:destination="@id/home_nav" />
     </fragment>
 
     <fragment
@@ -49,5 +52,6 @@
         android:name="com.example.cryptohub.views.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
+    <include app:graph="@navigation/home_nav" />
 
 </navigation>

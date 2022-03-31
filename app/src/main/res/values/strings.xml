@@ -15,4 +15,6 @@
     <string name="_24h">24H %</string>
     <string name="market_cap">Market Cap</string>
     <string name="name">Name</string>
+    <string name="coin">Coin</string>
+    <string name="price_btc">Price BTC</string>
 </resources>

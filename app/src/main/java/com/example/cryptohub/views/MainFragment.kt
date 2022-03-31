@@ -27,7 +27,8 @@ class MainFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.d("main fragment", view.findNavController().graph.startDestDisplayName)
+
+//        Log.d("main fragment", navController.graph.startDestDisplayName)
 //        binding.navBarHomeScreen.setupWithNavController(
 //            requireActivity().findNavController(R.id.homeContainer)
 //        )
