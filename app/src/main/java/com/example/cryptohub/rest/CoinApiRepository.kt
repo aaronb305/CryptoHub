@@ -41,21 +41,7 @@ class CoinApiRepositoryImpl(
     ): Flow<CoinResponse> =
         flow {
             Log.d("repository", "started flow")
-//            try {
-//                val response = coinGeckoApi.getCoinsByMarketCap()
-//                if (response.isSuccessful) {
-//                    response.body()?.let {
-//                        emit(CoinResponse.SUCCESS(it))
-//                    } ?: throw Exception("Response is null")
-//                }
-//                else {
-//                    throw Exception("Unsuccessful response")
-//                }
-//            }
-//            catch (e: Exception) {
-//                emit(CoinResponse.ERROR(e))
-//            }
-            responseTryCatch { coinGeckoApi.getCoinsByMarketCap() }
+            responseTryCatch { coinGeckoApi.getCoinsByMarketCap(pageNumber = pageNumber) }
             Log.d("repository", "end flow")
         }
 

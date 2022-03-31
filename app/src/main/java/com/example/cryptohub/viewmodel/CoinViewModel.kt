@@ -29,26 +29,26 @@ class CoinViewModel @Inject constructor(
     }
 
     var coin : CoinItem? = null
+    var coinId : String? = null
 
     private val _coinData : MutableLiveData<CoinResponse> = MutableLiveData(CoinResponse.LOADING)
     val coinData : LiveData<CoinResponse> get() = _coinData
 
-//    fun getTrendingCoins() {
-//        viewModelScope.launch(dispatcher) {
-//            coinApiRepository.getTrendingCoins().collect {
-//                _coinData.postValue(it)
-//            }
-//        }
-//    }
+    fun getTrendingCoins() {
+        viewModelScope.launch(dispatcher) {
+            coinApiRepository.getTrendingCoins().collect()
+            coinApiRepository.coinResponse.collect {
+                _coinData.postValue(it)
+            }
+        }
+    }
 
     fun getCoinsByMarketCap(pageNumber : Int = 1) {
         _coinData.postValue(CoinResponse.LOADING)
         Log.d("view model", "entered function")
         viewModelScope.launch(dispatcher) {
-            coinApiRepository.getCoinsByMarketCap(pageNumber = pageNumber).collect {
-                _coinData.postValue(it)
-                Log.d("view model", "value posted to live data")
-            }
+            Log.d("view model", pageNumber.toString())
+            coinApiRepository.getCoinsByMarketCap(pageNumber = pageNumber).collect()
             coinApiRepository.coinResponse.collect {
                 Log.d("view model", "response value posted to live data")
                 _coinData.postValue(it)

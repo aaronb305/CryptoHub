@@ -28,12 +28,12 @@ class CryptoFragment : BaseFragment() {
         })
     }
 
-    var pageNumber = 1
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        var pageNumber = 1
 
         binding.recycler.apply {
             val mLayoutManager = LinearLayoutManager(
@@ -47,6 +47,7 @@ class CryptoFragment : BaseFragment() {
                     super.onScrolled(recyclerView, dx, dy)
                     if (mLayoutManager.findLastVisibleItemPosition() == cryptoAdapter.itemCount - 1) {
                         pageNumber += 1
+                        Log.d("crypto fragment", pageNumber.toString())
                         viewModel.getCoinsByMarketCap(pageNumber)
                     }
                 }
@@ -54,6 +55,7 @@ class CryptoFragment : BaseFragment() {
         }
 
         binding.swipeToRefresh.setOnRefreshListener {
+            Log.d("crypto fragment", "listener called")
             viewModel.getCoinsByMarketCap()
             pageNumber = 1
             binding.swipeToRefresh.isRefreshing = true
