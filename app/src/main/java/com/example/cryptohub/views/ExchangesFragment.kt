@@ -21,4 +21,8 @@ class ExchangesFragment : BaseFragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
+
+    companion object {
+        fun newInstance() = ExchangesFragment()
+    }
 }

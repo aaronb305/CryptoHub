@@ -87,4 +87,8 @@ class CryptoFragment : BaseFragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
+
+    companion object {
+        fun newInstance() = CryptoFragment()
+    }
 }
