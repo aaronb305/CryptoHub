@@ -35,6 +35,7 @@ class CoinViewModel @Inject constructor(
     val coinData : LiveData<CoinResponse> get() = _coinData
 
     fun getTrendingCoins() {
+        _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
             coinApiRepository.getTrendingCoins().collect()
             coinApiRepository.coinResponse.collect {
@@ -51,6 +52,26 @@ class CoinViewModel @Inject constructor(
             coinApiRepository.getCoinsByMarketCap(pageNumber = pageNumber).collect()
             coinApiRepository.coinResponse.collect {
                 Log.d("view model", "response value posted to live data")
+                _coinData.postValue(it)
+            }
+        }
+    }
+
+    fun getCoinById(id: String) {
+        _coinData.postValue(CoinResponse.LOADING)
+        viewModelScope.launch(dispatcher) {
+            coinApiRepository.getCoinData(id).collect()
+            coinApiRepository.coinResponse.collect {
+                _coinData.postValue(it)
+            }
+        }
+    }
+
+    fun searchForCoins(query: String) {
+        _coinData.postValue(CoinResponse.LOADING)
+        viewModelScope.launch(dispatcher) {
+            coinApiRepository.searchForCoins(query).collect()
+            coinApiRepository.coinResponse.collect {
                 _coinData.postValue(it)
             }
         }

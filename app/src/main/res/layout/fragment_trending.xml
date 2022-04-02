@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".views.TrendingFragment">
+    tools:context=".views.TrendingFragment"
+    android:padding="10dp">
 
     <LinearLayout
         android:id="@+id/description"

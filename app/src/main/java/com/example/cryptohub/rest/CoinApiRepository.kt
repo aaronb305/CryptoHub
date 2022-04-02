@@ -23,7 +23,7 @@ class CoinApiRepositoryImpl(
     override fun getCoinData(id: String): Flow<CoinResponse> =
         flow {
             responseTryCatch(
-                { coinGeckoApi.getCoinData(id) },
+                { coinGeckoApi.getCoinDataById(id) },
                 { _coinResponse.value = it },
                 { _coinResponse.value = it }
             )

@@ -13,7 +13,7 @@ import retrofit2.http.Query
 interface CoinGeckoApi {
 
     @GET("$COINS_PATH{id}")
-    suspend fun getCoinData(
+    suspend fun getCoinDataById(
         @Path("id") id: String
     ) : Response<CoinData>
 
