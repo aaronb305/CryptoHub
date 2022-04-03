@@ -50,6 +50,10 @@ class ExchangeViewHolder(
         val volumeBTC = "%,.0f".format(exchange.tradeVolume24hBtc)
         binding.volume.text = "$volumeBTC"
 
+        binding.exchangeItem.setOnClickListener {
+            onExchangeClicked.invoke(exchange)
+        }
+
         Glide.with(context)
             .load(exchange.image)
             .into(binding.image)

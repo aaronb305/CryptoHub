@@ -41,7 +41,9 @@ interface CoinGeckoApi {
     ) : Response<List<Exchange>>
 
     @GET(DERIVATIVES_PATH)
-    suspend fun getDerivativeExchanges() : Response<List<DerivativeExchange>>
+    suspend fun getDerivativeExchanges(
+        @Query("page") pageNumber: Int = 1
+    ) : Response<List<DerivativeExchange>>
 
     companion object {
         const val BASE_URL = "https://api.coingecko.com/api/v3/"

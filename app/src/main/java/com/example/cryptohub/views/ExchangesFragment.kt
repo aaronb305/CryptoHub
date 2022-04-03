@@ -24,7 +24,7 @@ class ExchangesFragment : BaseFragment() {
     private val exchangeAdapter by lazy {
         ExchangeAdapter(onExchangeClicked = {
             viewModel.coinId = it.id
-            findNavController().navigate(R.id.action_exchanges_to_exchangeDetailsFragment2)
+            findNavController().navigate(R.id.exchangeDetailsFragment)
         })
     }
 

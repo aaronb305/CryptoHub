@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainFragment_to_exchangeDetailsFragment"
             app:destination="@id/exchangeDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_derivativeDetailsFragment2"
+            app:destination="@id/derivativeDetailsFragment" />
     </fragment>
 
     <fragment
@@ -62,5 +65,11 @@
         android:label="exchange_details"
         tools:layout="@layout/fragment_exchange_details" />
     <include app:graph="@navigation/home_nav" />
+
+    <fragment
+        android:id="@+id/derivativeDetailsFragment"
+        android:name="com.example.cryptohub.views.DerivativeDetailsFragment"
+        android:label="fragment_derivative_details"
+        tools:layout="@layout/fragment_derivative_details" />
 
 </navigation>

@@ -21,4 +21,6 @@
     <string name="exchange">Exchange</string>
     <string name="volume_btc">Volume (BTC)</string>
     <string name="trust_score">Trust Score</string>
+    <string name="open_interest">Open Interest (BTC)</string>
+    <string name="_24h_volume">24H Volume (BTC)</string>
 </resources>
