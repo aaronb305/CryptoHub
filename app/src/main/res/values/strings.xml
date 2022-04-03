@@ -17,4 +17,5 @@
     <string name="name">Name</string>
     <string name="coin">Coin</string>
     <string name="price_btc">Price BTC</string>
+    <string name="search_coin">Search for a coin ...</string>
 </resources>

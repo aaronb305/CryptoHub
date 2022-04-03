@@ -18,11 +18,13 @@
 
     <EditText
         android:id="@+id/searchField"
-        android:padding="5dp"
-        android:hint="@string/search"
+        android:padding="15dp"
+        android:hint="@string/search_coin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:inputType="text"
+        android:drawableStart="@drawable/search"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

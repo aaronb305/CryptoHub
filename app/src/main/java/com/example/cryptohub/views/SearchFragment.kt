@@ -69,7 +69,13 @@ class SearchFragment : BaseFragment() {
         }
 
         binding.searchField.addTextChangedListener {
-            viewModel.searchForCoins(it.toString())
+            if (it.toString().isNullOrEmpty()) {
+                binding.recycler.visibility = View.GONE
+            }
+            else {
+                binding.recycler.visibility = View.VISIBLE
+                viewModel.searchForCoins(it.toString())
+            }
         }
         // Inflate the layout for this fragment
         return binding.root

@@ -40,6 +40,8 @@ class SearchViewHolder(
     fun bind(coin : Coin) {
         binding.name.text = coin.name
         binding.symbol.text = coin.symbol
+        val rank = coin.marketCapRank.toString()
+        binding.marketCapRank.text = "#$rank"
 
         binding.searchItem.setOnClickListener {
             onCoinClicked.invoke(coin)
