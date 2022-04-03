@@ -29,15 +29,6 @@ class CoinApiRepositoryImpl(
             )
         }
 
-    override fun getAllCoins(): Flow<CoinResponse> =
-        flow {
-            responseTryCatch(
-                { coinGeckoApi.getAllCoins() },
-                { _coinResponse.value = it},
-                { _coinResponse.value = it }
-            )
-        }
-
     override fun getTrendingCoins(): Flow<CoinResponse> =
         flow {
             responseTryCatch(
@@ -71,11 +62,28 @@ class CoinApiRepositoryImpl(
             )
             Log.d("repository", "end flow")
         }
+
+    override fun getExchanges(page: Int): Flow<CoinResponse> =
+        flow {
+            responseTryCatch(
+                { coinGeckoApi.getExchanges(page) },
+                { _coinResponse.value = it },
+                { _coinResponse.value = it }
+            )
+        }
+
+    override fun getDerivativeExchanges(): Flow<CoinResponse> =
+        flow {
+            responseTryCatch(
+                { coinGeckoApi.getDerivativeExchanges() },
+                { _coinResponse.value = it },
+                { _coinResponse.value = it }
+            )
+        }
 }
 
 interface CoinApiRepository {
     fun getCoinData(id: String) : Flow<CoinResponse>
-    fun getAllCoins() : Flow<CoinResponse>
     fun getTrendingCoins() : Flow<CoinResponse>
     fun searchForCoins(query : String) : Flow<CoinResponse>
     fun getCoinsByMarketCap(
@@ -84,6 +92,8 @@ interface CoinApiRepository {
         amount : Int = 100,
         pageNumber : Int = 1
     ) : Flow<CoinResponse>
+    fun getExchanges(page : Int = 1) : Flow<CoinResponse>
+    fun getDerivativeExchanges() : Flow<CoinResponse>
 
     val coinResponse : StateFlow<CoinResponse>
 }

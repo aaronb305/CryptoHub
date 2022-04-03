@@ -12,7 +12,7 @@ import com.example.cryptohub.databinding.FragmentDetailsBinding
 import com.example.cryptohub.model.coindata.CoinData
 import com.example.cryptohub.utils.CoinResponse
 
-class DetailsFragment : BaseFragment() {
+class CoinDetailsFragment : BaseFragment() {
 
     private val binding by lazy {
         FragmentDetailsBinding.inflate(layoutInflater)

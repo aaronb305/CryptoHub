@@ -33,11 +33,20 @@
         <action
             android:id="@+id/action_exchanges_to_detailsFragment2"
             app:destination="@id/detailsFragment2" />
+        <action
+            android:id="@+id/action_exchanges_to_exchangeDetailsFragment2"
+            app:destination="@id/exchangeDetailsFragment2" />
     </fragment>
+
     <fragment
         android:id="@+id/detailsFragment2"
-        android:name="com.example.cryptohub.views.DetailsFragment"
+        android:name="com.example.cryptohub.views.CoinDetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/exchangeDetailsFragment2"
+        android:name="com.example.cryptohub.views.ExchangeDetailsFragment"
+        android:label="fragment_exchange_details"
+        tools:layout="@layout/fragment_exchange_details" />
 
 </navigation>

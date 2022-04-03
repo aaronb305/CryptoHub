@@ -1,10 +1,12 @@
 package com.example.cryptohub.rest
 
-import com.example.cryptohub.model.allcoins.CoinInfo
 import com.example.cryptohub.model.coindata.CoinData
 import com.example.cryptohub.model.coinsbymarketcap.CoinItem
+import com.example.cryptohub.model.derivatives.DerivativeExchange
+import com.example.cryptohub.model.exchanges.Exchange
 import com.example.cryptohub.model.search.SearchCoins
 import com.example.cryptohub.model.trending.TrendingCoins
+import com.example.cryptohub.rest.CoinGeckoApi.Companion.DERIVATIVES_PATH
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -16,9 +18,6 @@ interface CoinGeckoApi {
     suspend fun getCoinDataById(
         @Path("id") id: String
     ) : Response<CoinData>
-
-    @GET(ALL_COINS_PATH)
-    suspend fun getAllCoins() : Response<List<CoinInfo>>
 
     @GET(COINS_BY_MARKET_CAP)
     suspend fun getCoinsByMarketCap(
@@ -36,11 +35,20 @@ interface CoinGeckoApi {
     @GET(TRENDING_PATH)
     suspend fun getTrendingCoins() : Response<TrendingCoins>
 
+    @GET(EXCHANGES_PATH)
+    suspend fun getExchanges(
+        @Query("page") pageNumber: Int = 1
+    ) : Response<List<Exchange>>
+
+    @GET(DERIVATIVES_PATH)
+    suspend fun getDerivativeExchanges() : Response<List<DerivativeExchange>>
+
     companion object {
         const val BASE_URL = "https://api.coingecko.com/api/v3/"
+        private const val DERIVATIVES_PATH = "derivatives/exchanges/"
+        private const val EXCHANGES_PATH = "exchanges/"
         private const val COINS_PATH = "coins/"
         private const val COINS_BY_MARKET_CAP = "${COINS_PATH}markets/"
-        private const val ALL_COINS_PATH = "${COINS_PATH}list/"
         private const val SEARCH_PATH = "search/"
         private const val TRENDING_PATH = "${SEARCH_PATH}trending/"
     }

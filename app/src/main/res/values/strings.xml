@@ -16,6 +16,9 @@
     <string name="market_cap">Market Cap</string>
     <string name="name">Name</string>
     <string name="coin">Coin</string>
-    <string name="price_btc">Price BTC</string>
-    <string name="search_coin">Search for a coin ...</string>
+    <string name="price_btc">Price (BTC)</string>
+    <string name="search_coin">Search for a coin …</string>
+    <string name="exchange">Exchange</string>
+    <string name="volume_btc">Volume (BTC)</string>
+    <string name="trust_score">Trust Score</string>
 </resources>

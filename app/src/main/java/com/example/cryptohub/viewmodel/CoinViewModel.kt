@@ -77,9 +77,21 @@ class CoinViewModel @Inject constructor(
         }
     }
 
-    fun getAllCoins() {
+    fun getExchanges(pageNumber: Int = 1) {
+        _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
-            coinApiRepository.getAllCoins().collect {
+            coinApiRepository.getExchanges(pageNumber).collect()
+            coinApiRepository.coinResponse.collect {
+                _coinData.postValue(it)
+            }
+        }
+    }
+
+    fun getDerivativeExchanges() {
+        _coinData.postValue(CoinResponse.LOADING)
+        viewModelScope.launch(dispatcher) {
+            coinApiRepository.getDerivativeExchanges().collect()
+            coinApiRepository.coinResponse.collect {
                 _coinData.postValue(it)
             }
         }

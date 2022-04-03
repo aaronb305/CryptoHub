@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_mainFragment_to_home_nav"
             app:destination="@id/home_nav" />
+        <action
+            android:id="@+id/action_mainFragment_to_exchangeDetailsFragment"
+            app:destination="@id/exchangeDetailsFragment" />
     </fragment>
 
     <fragment
@@ -49,9 +52,15 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.cryptohub.views.DetailsFragment"
+        android:name="com.example.cryptohub.views.CoinDetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
+
+    <fragment
+        android:id="@+id/exchangeDetailsFragment"
+        android:name="com.example.cryptohub.views.ExchangeDetailsFragment"
+        android:label="exchange_details"
+        tools:layout="@layout/fragment_exchange_details" />
     <include app:graph="@navigation/home_nav" />
 
 </navigation>
