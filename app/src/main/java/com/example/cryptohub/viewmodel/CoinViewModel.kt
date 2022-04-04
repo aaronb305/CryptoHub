@@ -78,6 +78,7 @@ class CoinViewModel @Inject constructor(
     }
 
     fun getExchanges(pageNumber: Int = 1) {
+        Log.d("view model", "get exchanges called")
         _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
             coinApiRepository.getExchanges(pageNumber).collect()
@@ -88,6 +89,7 @@ class CoinViewModel @Inject constructor(
     }
 
     fun getDerivativeExchanges(pageNumber: Int = 1) {
+        Log.d("view model", "get derivative exchanges called")
         _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
             coinApiRepository.getDerivativeExchanges(pageNumber).collect()

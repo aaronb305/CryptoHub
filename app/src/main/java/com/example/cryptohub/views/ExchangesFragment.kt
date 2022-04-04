@@ -28,10 +28,17 @@ class ExchangesFragment : BaseFragment() {
         })
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d("exchange fragment", "on create called")
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        Log.d("exchange fragment", "on create view called")
 
         var pageNumber = 1
 
@@ -59,6 +66,12 @@ class ExchangesFragment : BaseFragment() {
             pageNumber = 1
             binding.swipeToRefresh.isRefreshing = true
         }
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         viewModel.coinData.observe(viewLifecycleOwner) {
             when (it) {
@@ -82,8 +95,6 @@ class ExchangesFragment : BaseFragment() {
         }
 
         viewModel.getExchanges()
-        // Inflate the layout for this fragment
-        return binding.root
     }
 
     companion object {

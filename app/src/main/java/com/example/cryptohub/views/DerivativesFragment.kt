@@ -29,10 +29,18 @@ class DerivativesFragment : BaseFragment() {
         })
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        Log.d("derivative fragment", "on create called")
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        Log.d("derivative fragment", "on create view called")
 
         var pageNumber = 1
 
@@ -48,7 +56,7 @@ class DerivativesFragment : BaseFragment() {
                     if (mLayoutManager.findLastVisibleItemPosition() == derivativesAdapter.itemCount - 1) {
                         pageNumber += 1
                         Log.d("derivative fragment", pageNumber.toString())
-                        viewModel.getExchanges(pageNumber)
+                        viewModel.getDerivativeExchanges(pageNumber)
                     }
                 }
             })
@@ -60,6 +68,14 @@ class DerivativesFragment : BaseFragment() {
             pageNumber = 1
             binding.swipeToRefresh.isRefreshing = true
         }
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        Log.d("derivatives fragment", "on resume called")
 
         viewModel.coinData.observe(viewLifecycleOwner) {
             when (it) {
@@ -83,8 +99,6 @@ class DerivativesFragment : BaseFragment() {
         }
 
         viewModel.getDerivativeExchanges()
-        // Inflate the layout for this fragment
-        return binding.root
     }
 
     companion object {
