@@ -26,7 +26,6 @@ class ExchangeDetailsAdapter(
     override fun getItemCount(): Int = exchangeList.size
 
     fun updateDetails(tickers: List<Ticker>) {
-        exchangeList.clear()
         exchangeList.addAll(tickers)
         notifyDataSetChanged()
     }

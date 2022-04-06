@@ -3,6 +3,7 @@ package com.example.cryptohub.rest
 import com.example.cryptohub.model.coindata.CoinData
 import com.example.cryptohub.model.coinsbymarketcap.CoinItem
 import com.example.cryptohub.model.derivatives.DerivativeExchange
+import com.example.cryptohub.model.derivatives.DerivativeExchangeData
 import com.example.cryptohub.model.exchanges.Exchange
 import com.example.cryptohub.model.exchanges.ExchangeData
 import com.example.cryptohub.model.search.SearchCoins
@@ -51,6 +52,12 @@ interface CoinGeckoApi {
     suspend fun getDerivativeExchanges(
         @Query("page") pageNumber: Int = 1
     ) : Response<List<DerivativeExchange>>
+
+    @GET("$DERIVATIVES_PATH{id}")
+    suspend fun getDerivativeExchangeData(
+        @Path("id") derivativeExchangeId : String,
+        @Query("include_tickers") tickers : String = "unexpired"
+    ) : Response<DerivativeExchangeData>
 
     companion object {
         const val BASE_URL = "https://api.coingecko.com/api/v3/"

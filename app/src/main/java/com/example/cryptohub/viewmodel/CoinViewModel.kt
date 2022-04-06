@@ -109,6 +109,16 @@ class CoinViewModel @Inject constructor(
         }
     }
 
+    fun getDerivativeExchangeData(id: String) {
+        _coinData.postValue(CoinResponse.LOADING)
+        viewModelScope.launch(dispatcher) {
+            coinApiRepository.getDerivativeExchangeData(id).collect()
+            coinApiRepository.coinResponse.collect {
+                _coinData.postValue(it)
+            }
+        }
+    }
+
     fun resetState() {
         _coinData.postValue(CoinResponse.DEFAULT)
     }

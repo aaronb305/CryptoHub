@@ -30,7 +30,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:textStyle="bold"
         android:textSize="25sp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:foregroundGravity="center"/>
 
     <LinearLayout
         android:id="@+id/description"

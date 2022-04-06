@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cryptohub.R
@@ -48,6 +49,10 @@ class ExchangesFragment : BaseFragment() {
             )
             layoutManager = mLayoutManager
             adapter = exchangeAdapter
+
+            val decoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
+            addItemDecoration(decoration)
+
             addOnScrollListener(object : RecyclerView.OnScrollListener(){
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
@@ -97,6 +102,12 @@ class ExchangesFragment : BaseFragment() {
         }
 
         viewModel.getExchanges()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        viewModel.coinData.removeObservers(viewLifecycleOwner)
     }
 
     companion object {
