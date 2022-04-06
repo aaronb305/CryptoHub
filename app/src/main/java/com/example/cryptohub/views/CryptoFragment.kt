@@ -60,7 +60,15 @@ class CryptoFragment : BaseFragment() {
             viewModel.getCoinsByMarketCap()
             pageNumber = 1
             binding.swipeToRefresh.isRefreshing = true
+            binding.recycler.visibility = View.GONE
         }
+
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         viewModel.coinData.observe(viewLifecycleOwner) {
             when (it) {
@@ -69,6 +77,7 @@ class CryptoFragment : BaseFragment() {
                 }
                 is CoinResponse.SUCCESS<*> -> {
                     binding.loadingBar.visibility = View.GONE
+                    binding.recycler.visibility = View.VISIBLE
                     binding.swipeToRefresh.isRefreshing = false
                     val coins = it.response as List<CoinItem>
                     cryptoAdapter.updateCoins(coins)
@@ -84,9 +93,6 @@ class CryptoFragment : BaseFragment() {
         }
 
         viewModel.getCoinsByMarketCap()
-
-        // Inflate the layout for this fragment
-        return binding.root
     }
 
     companion object {

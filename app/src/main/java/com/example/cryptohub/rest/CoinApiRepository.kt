@@ -80,6 +80,17 @@ class CoinApiRepositoryImpl(
                 { _coinResponse.value = it }
             )
         }
+
+    override fun getExchangeData(exchangeId: String, pageNumber: Int): Flow<CoinResponse> =
+        flow {
+            responseTryCatch(
+                { coinGeckoApi.getExchangeTickers(exchangeId, pageNumber) },
+                { _coinResponse.value = it },
+                { _coinResponse.value = it }
+            )
+        }
+
+
 }
 
 interface CoinApiRepository {
@@ -94,6 +105,7 @@ interface CoinApiRepository {
     ) : Flow<CoinResponse>
     fun getExchanges(page : Int = 1) : Flow<CoinResponse>
     fun getDerivativeExchanges(pageNumber: Int) : Flow<CoinResponse>
+    fun getExchangeData(exchangeId : String, pageNumber: Int) : Flow<CoinResponse>
 
     val coinResponse : StateFlow<CoinResponse>
 }

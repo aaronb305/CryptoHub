@@ -42,7 +42,9 @@ class DerivativesViewHolder(
 
     fun bind(exchange: DerivativeExchange) {
         binding.derivativeName.text = exchange.name
-        binding.volume.text = exchange.tradeVolume24hBtc
+
+        val volumeBTC = "%,.2f".format(exchange.tradeVolume24hBtc.toDouble())
+        binding.volume.text = volumeBTC
 
         val oiBTC = "%,.2f".format(exchange.openInterestBtc)
         binding.openInterest.text = oiBTC

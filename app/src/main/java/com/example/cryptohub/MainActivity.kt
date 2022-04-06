@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener{ _, nd: NavDestination, _->
             Log.d("main activity", "destination listener called")
-            if (nd.id != R.id.detailsFragment && nd.id != R.id.detailsFragment2) {
+            if (nd.id != R.id.detailsFragment && nd.id != R.id.exchangeDetailsFragment &&
+                    nd.id != R.id.derivativeDetailsFragment) {
                 binding.navBar.visibility = View.VISIBLE
             }
             else {

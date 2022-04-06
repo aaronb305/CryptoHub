@@ -99,6 +99,16 @@ class CoinViewModel @Inject constructor(
         }
     }
 
+    fun getExchangeData(exchangeId : String, pageNumber: Int) {
+        _coinData.postValue(CoinResponse.LOADING)
+        viewModelScope.launch(dispatcher) {
+            coinApiRepository.getExchangeData(exchangeId, pageNumber).collect()
+            coinApiRepository.coinResponse.collect {
+                _coinData.postValue(it)
+            }
+        }
+    }
+
     fun resetState() {
         _coinData.postValue(CoinResponse.DEFAULT)
     }

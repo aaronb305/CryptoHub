@@ -4,6 +4,7 @@ import com.example.cryptohub.model.coindata.CoinData
 import com.example.cryptohub.model.coinsbymarketcap.CoinItem
 import com.example.cryptohub.model.derivatives.DerivativeExchange
 import com.example.cryptohub.model.exchanges.Exchange
+import com.example.cryptohub.model.exchanges.ExchangeData
 import com.example.cryptohub.model.search.SearchCoins
 import com.example.cryptohub.model.trending.TrendingCoins
 import com.example.cryptohub.rest.CoinGeckoApi.Companion.DERIVATIVES_PATH
@@ -39,6 +40,12 @@ interface CoinGeckoApi {
     suspend fun getExchanges(
         @Query("page") pageNumber: Int = 1
     ) : Response<List<Exchange>>
+
+    @GET("$EXCHANGES_PATH{id}/tickers")
+    suspend fun getExchangeTickers(
+        @Path("id") exchangeId : String,
+        @Query("page") pageNumber: Int = 1
+    ) : Response<ExchangeData>
 
     @GET(DERIVATIVES_PATH)
     suspend fun getDerivativeExchanges(

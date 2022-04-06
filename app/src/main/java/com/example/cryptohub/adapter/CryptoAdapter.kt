@@ -38,6 +38,12 @@ class CryptoAdapter(
         cryptoList.addAll(newCoins)
         notifyItemRangeInserted(initialSize, newCoins.size)
     }
+
+    fun clear() {
+        val size = cryptoList.size
+        cryptoList.clear()
+        notifyItemRangeRemoved(0, size)
+    }
 }
 
 class CryptoViewHolder(

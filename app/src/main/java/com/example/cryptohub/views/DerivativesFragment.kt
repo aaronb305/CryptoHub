@@ -67,6 +67,7 @@ class DerivativesFragment : BaseFragment() {
             viewModel.getDerivativeExchanges()
             pageNumber = 1
             binding.swipeToRefresh.isRefreshing = true
+            binding.recycler.visibility = View.GONE
         }
         // Inflate the layout for this fragment
         return binding.root
@@ -84,6 +85,7 @@ class DerivativesFragment : BaseFragment() {
                 }
                 is CoinResponse.SUCCESS<*> -> {
                     binding.loadingBar.visibility = View.GONE
+                    binding.recycler.visibility = View.VISIBLE
                     binding.swipeToRefresh.isRefreshing = false
                     val derivativeExchanges = it.response as List<DerivativeExchange>
                     derivativesAdapter.updateDerivatives(derivativeExchanges)
