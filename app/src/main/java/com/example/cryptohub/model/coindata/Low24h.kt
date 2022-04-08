@@ -5,125 +5,125 @@ import com.google.gson.annotations.SerializedName
 
 data class Low24h(
     @SerializedName("aed")
-    val aed: Int,
+    val aed: Double,
     @SerializedName("ars")
-    val ars: Int,
+    val ars: Double,
     @SerializedName("aud")
-    val aud: Int,
+    val aud: Double,
     @SerializedName("bch")
     val bch: Double,
     @SerializedName("bdt")
-    val bdt: Int,
+    val bdt: Double,
     @SerializedName("bhd")
     val bhd: Double,
     @SerializedName("bits")
-    val bits: Int,
+    val bits: Double,
     @SerializedName("bmd")
-    val bmd: Int,
+    val bmd: Double,
     @SerializedName("bnb")
     val bnb: Double,
     @SerializedName("brl")
-    val brl: Int,
+    val brl: Double,
     @SerializedName("btc")
-    val btc: Int,
+    val btc: Double,
     @SerializedName("cad")
-    val cad: Int,
+    val cad: Double,
     @SerializedName("chf")
-    val chf: Int,
+    val chf: Double,
     @SerializedName("clp")
-    val clp: Int,
+    val clp: Double,
     @SerializedName("cny")
-    val cny: Int,
+    val cny: Double,
     @SerializedName("czk")
-    val czk: Int,
+    val czk: Double,
     @SerializedName("dkk")
-    val dkk: Int,
+    val dkk: Double,
     @SerializedName("dot")
-    val dot: Int,
+    val dot: Double,
     @SerializedName("eos")
-    val eos: Int,
+    val eos: Double,
     @SerializedName("eth")
     val eth: Double,
     @SerializedName("eur")
-    val eur: Int,
+    val eur: Double,
     @SerializedName("gbp")
-    val gbp: Int,
+    val gbp: Double,
     @SerializedName("hkd")
-    val hkd: Int,
+    val hkd: Double,
     @SerializedName("huf")
-    val huf: Int,
+    val huf: Double,
     @SerializedName("idr")
-    val idr: Int,
+    val idr: Double,
     @SerializedName("ils")
-    val ils: Int,
+    val ils: Double,
     @SerializedName("inr")
-    val inr: Int,
+    val inr: Double,
     @SerializedName("jpy")
-    val jpy: Int,
+    val jpy: Double,
     @SerializedName("krw")
-    val krw: Int,
+    val krw: Double,
     @SerializedName("kwd")
     val kwd: Double,
     @SerializedName("link")
-    val link: Int,
+    val link: Double,
     @SerializedName("lkr")
-    val lkr: Int,
+    val lkr: Double,
     @SerializedName("ltc")
     val ltc: Double,
     @SerializedName("mmk")
-    val mmk: Int,
+    val mmk: Double,
     @SerializedName("mxn")
-    val mxn: Int,
+    val mxn: Double,
     @SerializedName("myr")
-    val myr: Int,
+    val myr: Double,
     @SerializedName("ngn")
-    val ngn: Int,
+    val ngn: Double,
     @SerializedName("nok")
-    val nok: Int,
+    val nok: Double,
     @SerializedName("nzd")
-    val nzd: Int,
+    val nzd: Double,
     @SerializedName("php")
-    val php: Int,
+    val php: Double,
     @SerializedName("pkr")
-    val pkr: Int,
+    val pkr: Double,
     @SerializedName("pln")
-    val pln: Int,
+    val pln: Double,
     @SerializedName("rub")
-    val rub: Int,
+    val rub: Double,
     @SerializedName("sar")
-    val sar: Int,
+    val sar: Double,
     @SerializedName("sats")
-    val sats: Int,
+    val sats: Double,
     @SerializedName("sek")
-    val sek: Int,
+    val sek: Double,
     @SerializedName("sgd")
-    val sgd: Int,
+    val sgd: Double,
     @SerializedName("thb")
-    val thb: Int,
+    val thb: Double,
     @SerializedName("try")
-    val tryX: Int,
+    val tryX: Double,
     @SerializedName("twd")
-    val twd: Int,
+    val twd: Double,
     @SerializedName("uah")
-    val uah: Int,
+    val uah: Double,
     @SerializedName("usd")
-    val usd: Int,
+    val usd: Double,
     @SerializedName("vef")
     val vef: Double,
     @SerializedName("vnd")
-    val vnd: Int,
+    val vnd: Double,
     @SerializedName("xag")
     val xag: Double,
     @SerializedName("xau")
     val xau: Double,
     @SerializedName("xdr")
-    val xdr: Int,
+    val xdr: Double,
     @SerializedName("xlm")
-    val xlm: Int,
+    val xlm: Double,
     @SerializedName("xrp")
-    val xrp: Int,
+    val xrp: Double,
     @SerializedName("yfi")
     val yfi: Double,
     @SerializedName("zar")
-    val zar: Int
+    val zar: Double
 )

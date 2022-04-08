@@ -25,7 +25,7 @@ data class PriceChangePercentage7dInCurrency(
     @SerializedName("brl")
     val brl: Double,
     @SerializedName("btc")
-    val btc: Int,
+    val btc: Double,
     @SerializedName("cad")
     val cad: Double,
     @SerializedName("chf")

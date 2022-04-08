@@ -24,7 +24,6 @@ class CryptoFragment : BaseFragment() {
 
     private val cryptoAdapter by lazy {
         CryptoAdapter(onCoinClicked = {
-            viewModel.coin = it
             viewModel.coinId = it.id
             findNavController().navigate(R.id.detailsFragment)
         })

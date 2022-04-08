@@ -35,8 +35,6 @@ class CoinDetailsFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding.coin.text = viewModel.coin?.name
-
         binding.recycler.apply {
             val mLayoutManager = LinearLayoutManager(
                 context, LinearLayoutManager.VERTICAL, false
@@ -78,6 +76,7 @@ class CoinDetailsFragment : BaseFragment() {
                     binding.recycler.visibility = View.VISIBLE
                     binding.swipeToRefresh.isRefreshing = false
                     val details = it.response as CoinData
+                    binding.coin.text = details.name
                     val detailsHashMap = createHashMap(details)
                     detailsAdapter.updateDetails(detailsHashMap)
                     viewModel.resetState()

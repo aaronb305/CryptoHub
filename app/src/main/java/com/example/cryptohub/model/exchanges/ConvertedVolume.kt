@@ -9,5 +9,5 @@ data class ConvertedVolume(
     @SerializedName("eth")
     val eth: Double,
     @SerializedName("usd")
-    val usd: Long
+    val usd: Double
 )
