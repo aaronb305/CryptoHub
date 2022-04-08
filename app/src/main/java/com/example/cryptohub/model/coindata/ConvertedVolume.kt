@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 
 data class ConvertedVolume(
     @SerializedName("btc")
-    val btc: Int,
+    val btc: Double,
     @SerializedName("eth")
-    val eth: Int,
+    val eth: Double,
     @SerializedName("usd")
-    val usd: Int
+    val usd: Double
 )

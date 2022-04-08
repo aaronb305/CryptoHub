@@ -1,5 +1,6 @@
 package com.example.cryptohub.rest
 
+import com.example.cryptohub.model.coinchartdata.CoinChartData
 import com.example.cryptohub.model.coindata.CoinData
 import com.example.cryptohub.model.coinsbymarketcap.CoinItem
 import com.example.cryptohub.model.derivatives.DerivativeExchange
@@ -20,6 +21,13 @@ interface CoinGeckoApi {
     suspend fun getCoinDataById(
         @Path("id") id: String
     ) : Response<CoinData>
+
+    @GET("$COINS_PATH{id}/market_chart")
+    suspend fun getCoinChartData(
+        @Path("id") id : String,
+        @Query("days") days : String,
+        @Query("vs_currency") currency: String = "usd"
+    ) : Response<CoinChartData>
 
     @GET(COINS_BY_MARKET_CAP)
     suspend fun getCoinsByMarketCap(

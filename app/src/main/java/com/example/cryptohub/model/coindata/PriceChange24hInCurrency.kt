@@ -7,13 +7,13 @@ data class PriceChange24hInCurrency(
     @SerializedName("aed")
     val aed: Double,
     @SerializedName("ars")
-    val ars: Int,
+    val ars: Double,
     @SerializedName("aud")
     val aud: Double,
     @SerializedName("bch")
     val bch: Double,
     @SerializedName("bdt")
-    val bdt: Int,
+    val bdt: Double,
     @SerializedName("bhd")
     val bhd: Double,
     @SerializedName("bits")
@@ -25,13 +25,13 @@ data class PriceChange24hInCurrency(
     @SerializedName("brl")
     val brl: Double,
     @SerializedName("btc")
-    val btc: Int,
+    val btc: Double,
     @SerializedName("cad")
     val cad: Double,
     @SerializedName("chf")
     val chf: Double,
     @SerializedName("clp")
-    val clp: Int,
+    val clp: Double,
     @SerializedName("cny")
     val cny: Double,
     @SerializedName("czk")
@@ -51,17 +51,17 @@ data class PriceChange24hInCurrency(
     @SerializedName("hkd")
     val hkd: Double,
     @SerializedName("huf")
-    val huf: Int,
+    val huf: Double,
     @SerializedName("idr")
-    val idr: Int,
+    val idr: Double,
     @SerializedName("ils")
     val ils: Double,
     @SerializedName("inr")
-    val inr: Int,
+    val inr: Double,
     @SerializedName("jpy")
-    val jpy: Int,
+    val jpy: Double,
     @SerializedName("krw")
-    val krw: Int,
+    val krw: Double,
     @SerializedName("kwd")
     val kwd: Double,
     @SerializedName("link")
@@ -71,21 +71,21 @@ data class PriceChange24hInCurrency(
     @SerializedName("ltc")
     val ltc: Double,
     @SerializedName("mmk")
-    val mmk: Int,
+    val mmk: Double,
     @SerializedName("mxn")
     val mxn: Double,
     @SerializedName("myr")
     val myr: Double,
     @SerializedName("ngn")
-    val ngn: Int,
+    val ngn: Double,
     @SerializedName("nok")
     val nok: Double,
     @SerializedName("nzd")
     val nzd: Double,
     @SerializedName("php")
-    val php: Int,
+    val php: Double,
     @SerializedName("pkr")
-    val pkr: Int,
+    val pkr: Double,
     @SerializedName("pln")
     val pln: Double,
     @SerializedName("rub")
@@ -99,7 +99,7 @@ data class PriceChange24hInCurrency(
     @SerializedName("sgd")
     val sgd: Double,
     @SerializedName("thb")
-    val thb: Int,
+    val thb: Double,
     @SerializedName("try")
     val tryX: Double,
     @SerializedName("twd")
@@ -111,7 +111,7 @@ data class PriceChange24hInCurrency(
     @SerializedName("vef")
     val vef: Double,
     @SerializedName("vnd")
-    val vnd: Int,
+    val vnd: Double,
     @SerializedName("xag")
     val xag: Double,
     @SerializedName("xau")

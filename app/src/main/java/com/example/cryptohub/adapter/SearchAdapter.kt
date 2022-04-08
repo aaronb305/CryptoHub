@@ -12,9 +12,7 @@ class SearchAdapter(
 ) : RecyclerView.Adapter<SearchViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val view = SearchItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+            LayoutInflater.from(parent.context), parent, false
         )
         return SearchViewHolder(view, onCoinClicked)
     }

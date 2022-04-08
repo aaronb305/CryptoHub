@@ -14,18 +14,12 @@ class CoinApiRepositoryImpl(
     private val coinGeckoApi: CoinGeckoApi
 ) : CoinApiRepository {
 
-    private val _coinResponse: MutableStateFlow<CoinResponse> =
-        MutableStateFlow(CoinResponse.LOADING)
-
-    override val coinResponse : StateFlow<CoinResponse>
-        get() = _coinResponse
-
     override fun getCoinData(id: String): Flow<CoinResponse> =
         flow {
             responseTryCatch(
                 { coinGeckoApi.getCoinDataById(id) },
-                { _coinResponse.value = it },
-                { _coinResponse.value = it }
+                { emit(it) },
+                { emit(it) }
             )
         }
 
@@ -33,8 +27,8 @@ class CoinApiRepositoryImpl(
         flow {
             responseTryCatch(
                 { coinGeckoApi.getTrendingCoins() },
-                { _coinResponse.value = it},
-                { _coinResponse.value = it }
+                { emit(it) },
+                { emit(it) }
             )
         }
 
@@ -42,8 +36,8 @@ class CoinApiRepositoryImpl(
         flow {
             responseTryCatch(
                 { coinGeckoApi.searchForCoins(query) },
-                { _coinResponse.value = it},
-                { _coinResponse.value = it }
+                { emit(it) },
+                { emit(it) }
             )
         }
 
@@ -57,8 +51,8 @@ class CoinApiRepositoryImpl(
             Log.d("repository", "started flow")
             responseTryCatch(
                 { coinGeckoApi.getCoinsByMarketCap(pageNumber = pageNumber) },
-                { _coinResponse.value = it },
-                { _coinResponse.value = it }
+                { emit(it) },
+                { emit(it) }
             )
             Log.d("repository", "end flow")
         }
@@ -67,8 +61,8 @@ class CoinApiRepositoryImpl(
         flow {
             responseTryCatch(
                 { coinGeckoApi.getExchanges(page) },
-                { _coinResponse.value = it },
-                { _coinResponse.value = it }
+                { emit(it) },
+                { emit(it) }
             )
         }
 
@@ -76,8 +70,8 @@ class CoinApiRepositoryImpl(
         flow {
             responseTryCatch(
                 { coinGeckoApi.getDerivativeExchanges(pageNumber) },
-                { _coinResponse.value = it },
-                { _coinResponse.value = it }
+                { emit(it) },
+                { emit(it) }
             )
         }
 
@@ -85,8 +79,8 @@ class CoinApiRepositoryImpl(
         flow {
             responseTryCatch(
                 { coinGeckoApi.getExchangeTickers(exchangeId, pageNumber) },
-                { _coinResponse.value = it },
-                { _coinResponse.value = it }
+                { emit(it) },
+                { emit(it) }
             )
         }
 
@@ -94,8 +88,17 @@ class CoinApiRepositoryImpl(
         flow {
             responseTryCatch(
                 { coinGeckoApi.getDerivativeExchangeData(id) },
-                { _coinResponse.value = it },
-                { _coinResponse.value = it }
+                { emit(it) },
+                { emit(it) }
+            )
+        }
+
+    override fun getCoinChartData(id : String, days: String): Flow<CoinResponse> =
+        flow {
+            responseTryCatch(
+                { coinGeckoApi.getCoinChartData(id, days = days) },
+                { emit(it) },
+                { emit(it) }
             )
         }
 
@@ -118,6 +121,8 @@ interface CoinApiRepository {
     fun getDerivativeExchangeData(
         id : String, includeTicker : String = "unexpired"
     ) : Flow<CoinResponse>
-
-    val coinResponse : StateFlow<CoinResponse>
+    fun getCoinChartData(
+        id : String,
+        days : String
+    ) : Flow<CoinResponse>
 }

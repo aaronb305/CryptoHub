@@ -17,9 +17,7 @@ class TrendingAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrendingViewHolder {
         val view = TrendingItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+            LayoutInflater.from(parent.context), parent, false
         )
         return TrendingViewHolder(view, onTrendingClicked, parent.context)
     }

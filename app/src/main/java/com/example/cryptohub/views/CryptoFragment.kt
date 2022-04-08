@@ -39,9 +39,8 @@ class CryptoFragment : BaseFragment() {
 
         binding.recycler.apply {
             val mLayoutManager = LinearLayoutManager(
-                context,
-                LinearLayoutManager.VERTICAL,
-                false)
+                context, LinearLayoutManager.VERTICAL, false
+            )
             layoutManager = mLayoutManager
             adapter = cryptoAdapter
 

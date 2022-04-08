@@ -36,9 +36,7 @@ class TrendingFragment : BaseFragment() {
 
         binding.recycler.apply {
             layoutManager = LinearLayoutManager(
-                context,
-                LinearLayoutManager.VERTICAL,
-                false
+                context, LinearLayoutManager.VERTICAL, false
             )
             adapter = trendingAdapter
         }

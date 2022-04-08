@@ -38,7 +38,7 @@ class DerivativeDetailsFragment : BaseFragment() {
 
         binding.recycler.apply {
             val mLayoutManager = LinearLayoutManager(
-                requireContext(), LinearLayoutManager.VERTICAL, false
+                context, LinearLayoutManager.VERTICAL, false
             )
             adapter = detailsAdapter
             layoutManager = mLayoutManager

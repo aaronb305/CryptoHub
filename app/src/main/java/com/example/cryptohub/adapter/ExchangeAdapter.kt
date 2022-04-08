@@ -15,9 +15,7 @@ class ExchangeAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExchangeViewHolder {
         val view = ExchangeItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+            LayoutInflater.from(parent.context), parent, false
         )
         return ExchangeViewHolder(view, onExchangeClicked, parent.context)
     }

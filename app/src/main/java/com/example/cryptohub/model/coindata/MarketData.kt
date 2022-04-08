@@ -33,7 +33,7 @@ data class MarketData(
     @SerializedName("market_cap")
     val marketCap: MarketCap,
     @SerializedName("market_cap_change_24h")
-    val marketCapChange24h: Long,
+    val marketCapChange24h: Double,
     @SerializedName("market_cap_change_24h_in_currency")
     val marketCapChange24hInCurrency: MarketCapChange24hInCurrency,
     @SerializedName("market_cap_change_percentage_24h")

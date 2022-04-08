@@ -15,9 +15,7 @@ class DerivativesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DerivativesViewHolder {
         val view = DerivativesItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+            LayoutInflater.from(parent.context), parent, false
         )
         return DerivativesViewHolder(view, onDerivativeClicked, parent.context)
     }

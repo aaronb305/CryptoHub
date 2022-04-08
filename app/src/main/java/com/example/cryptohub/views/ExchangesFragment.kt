@@ -45,7 +45,7 @@ class ExchangesFragment : BaseFragment() {
 
         binding.recycler.apply {
             val mLayoutManager = LinearLayoutManager(
-                requireContext(), LinearLayoutManager.VERTICAL, false
+                context, LinearLayoutManager.VERTICAL, false
             )
             layoutManager = mLayoutManager
             adapter = exchangeAdapter

@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 
 data class ConvertedLast(
     @SerializedName("btc")
-    val btc: Int,
+    val btc: Double,
     @SerializedName("eth")
     val eth: Double,
     @SerializedName("usd")
-    val usd: Int
+    val usd: Double
 )

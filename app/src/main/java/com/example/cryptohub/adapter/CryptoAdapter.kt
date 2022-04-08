@@ -19,9 +19,7 @@ class CryptoAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CryptoViewHolder {
         val view = CryptoItemBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
+            LayoutInflater.from(parent.context), parent, false
         )
         return CryptoViewHolder(view, parent.context, onCoinClicked)
     }

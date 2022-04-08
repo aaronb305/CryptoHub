@@ -31,14 +31,16 @@ class CoinViewModel @Inject constructor(
     var coin : CoinItem? = null
     var coinId : String? = null
 
+    private val _coinMarketChart : MutableLiveData<CoinResponse> = MutableLiveData(CoinResponse.LOADING)
+    val coinMarketChart : LiveData<CoinResponse> get() = _coinMarketChart
+
     private val _coinData : MutableLiveData<CoinResponse> = MutableLiveData(CoinResponse.LOADING)
     val coinData : LiveData<CoinResponse> get() = _coinData
 
     fun getTrendingCoins() {
         _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
-            coinApiRepository.getTrendingCoins().collect()
-            coinApiRepository.coinResponse.collect {
+            coinApiRepository.getTrendingCoins().collect {
                 _coinData.postValue(it)
             }
         }
@@ -49,9 +51,7 @@ class CoinViewModel @Inject constructor(
         Log.d("view model", "entered function")
         viewModelScope.launch(dispatcher) {
             Log.d("view model", pageNumber.toString())
-            coinApiRepository.getCoinsByMarketCap(pageNumber = pageNumber).collect()
-            coinApiRepository.coinResponse.collect {
-                Log.d("view model", "response value posted to live data")
+            coinApiRepository.getCoinsByMarketCap(pageNumber = pageNumber).collect {
                 _coinData.postValue(it)
             }
         }
@@ -60,8 +60,7 @@ class CoinViewModel @Inject constructor(
     fun getCoinById(id: String) {
         _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
-            coinApiRepository.getCoinData(id).collect()
-            coinApiRepository.coinResponse.collect {
+            coinApiRepository.getCoinData(id).collect {
                 _coinData.postValue(it)
             }
         }
@@ -70,8 +69,7 @@ class CoinViewModel @Inject constructor(
     fun searchForCoins(query: String) {
         _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
-            coinApiRepository.searchForCoins(query).collect()
-            coinApiRepository.coinResponse.collect {
+            coinApiRepository.searchForCoins(query).collect {
                 _coinData.postValue(it)
             }
         }
@@ -81,8 +79,7 @@ class CoinViewModel @Inject constructor(
         Log.d("view model", "get exchanges called")
         _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
-            coinApiRepository.getExchanges(pageNumber).collect()
-            coinApiRepository.coinResponse.collect {
+            coinApiRepository.getExchanges(pageNumber).collect {
                 _coinData.postValue(it)
             }
         }
@@ -92,8 +89,7 @@ class CoinViewModel @Inject constructor(
         Log.d("view model", "get derivative exchanges called")
         _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
-            coinApiRepository.getDerivativeExchanges(pageNumber).collect()
-            coinApiRepository.coinResponse.collect {
+            coinApiRepository.getDerivativeExchanges(pageNumber).collect {
                 _coinData.postValue(it)
             }
         }
@@ -102,8 +98,7 @@ class CoinViewModel @Inject constructor(
     fun getExchangeData(exchangeId : String, pageNumber: Int) {
         _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
-            coinApiRepository.getExchangeData(exchangeId, pageNumber).collect()
-            coinApiRepository.coinResponse.collect {
+            coinApiRepository.getExchangeData(exchangeId, pageNumber).collect {
                 _coinData.postValue(it)
             }
         }
@@ -112,9 +107,17 @@ class CoinViewModel @Inject constructor(
     fun getDerivativeExchangeData(id: String) {
         _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
-            coinApiRepository.getDerivativeExchangeData(id).collect()
-            coinApiRepository.coinResponse.collect {
+            coinApiRepository.getDerivativeExchangeData(id).collect {
                 _coinData.postValue(it)
+            }
+        }
+    }
+
+    fun getCoinChartData(id : String, days : String) {
+        _coinData.postValue(CoinResponse.LOADING)
+        viewModelScope.launch(dispatcher) {
+            coinApiRepository.getCoinChartData(id, days).collect {
+                _coinMarketChart.postValue(it)
             }
         }
     }
