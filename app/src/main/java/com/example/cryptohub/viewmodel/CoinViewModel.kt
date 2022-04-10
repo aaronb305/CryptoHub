@@ -24,10 +24,6 @@ class CoinViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcher
 ) : ViewModel(){
 
-    init {
-        Log.d("view model", "view model created")
-    }
-
     var coin : CoinItem? = null
     var coinId : String? = null
 
@@ -48,9 +44,7 @@ class CoinViewModel @Inject constructor(
 
     fun getCoinsByMarketCap(pageNumber : Int = 1) {
         _coinData.postValue(CoinResponse.LOADING)
-        Log.d("view model", "entered function")
         viewModelScope.launch(dispatcher) {
-            Log.d("view model", pageNumber.toString())
             coinApiRepository.getCoinsByMarketCap(pageNumber = pageNumber).collect {
                 _coinData.postValue(it)
             }
@@ -76,7 +70,6 @@ class CoinViewModel @Inject constructor(
     }
 
     fun getExchanges(pageNumber: Int = 1) {
-        Log.d("view model", "get exchanges called")
         _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
             coinApiRepository.getExchanges(pageNumber).collect {
@@ -86,7 +79,6 @@ class CoinViewModel @Inject constructor(
     }
 
     fun getDerivativeExchanges(pageNumber: Int = 1) {
-        Log.d("view model", "get derivative exchanges called")
         _coinData.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
             coinApiRepository.getDerivativeExchanges(pageNumber).collect {
@@ -114,7 +106,7 @@ class CoinViewModel @Inject constructor(
     }
 
     fun getCoinChartData(id : String, days : String) {
-        _coinData.postValue(CoinResponse.LOADING)
+        _coinMarketChart.postValue(CoinResponse.LOADING)
         viewModelScope.launch(dispatcher) {
             coinApiRepository.getCoinChartData(id, days).collect {
                 _coinMarketChart.postValue(it)

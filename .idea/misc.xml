@@ -15,7 +15,7 @@
         <entry key="app/src/main/res/layout/exchange_details_item.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/exchange_item.xml" value="0.3292572463768116" />
         <entry key="app/src/main/res/layout/fragment_crypto.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_derivative_details.xml" value="0.3292572463768116" />
+        <entry key="app/src/main/res/layout/fragment_derivative_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_derivatives.xml" value="0.2376237623762376" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_exchange_details.xml" value="0.3292572463768116" />

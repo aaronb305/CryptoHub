@@ -29,6 +29,8 @@ class ExchangesFragment : BaseFragment() {
         })
     }
 
+    private var notCalled : Boolean = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("exchange fragment", "on create called")
@@ -57,9 +59,12 @@ class ExchangesFragment : BaseFragment() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     if (mLayoutManager.findLastVisibleItemPosition() == exchangeAdapter.itemCount - 1) {
-                        pageNumber += 1
-                        Log.d("exchange fragment", pageNumber.toString())
-                        viewModel.getExchanges(pageNumber)
+                        if (notCalled) {
+                            pageNumber += 1
+                            notCalled = false
+                            Log.d("exchange fragment", pageNumber.toString())
+                            viewModel.getExchanges(pageNumber)
+                        }
                     }
                 }
             })
@@ -90,6 +95,7 @@ class ExchangesFragment : BaseFragment() {
                     binding.swipeToRefresh.isRefreshing = false
                     val exchanges = it.response as List<Exchange>
                     exchangeAdapter.updateExchanges(exchanges)
+                    notCalled = true
                     viewModel.resetState()
                 }
                 is CoinResponse.ERROR -> {

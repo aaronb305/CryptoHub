@@ -48,13 +48,11 @@ class CoinApiRepositoryImpl(
         pageNumber: Int
     ): Flow<CoinResponse> =
         flow {
-            Log.d("repository", "started flow")
             responseTryCatch(
                 { coinGeckoApi.getCoinsByMarketCap(pageNumber = pageNumber) },
                 { emit(it) },
                 { emit(it) }
             )
-            Log.d("repository", "end flow")
         }
 
     override fun getExchanges(page: Int): Flow<CoinResponse> =

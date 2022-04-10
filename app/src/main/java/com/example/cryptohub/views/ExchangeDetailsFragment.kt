@@ -47,19 +47,6 @@ class ExchangeDetailsFragment : BaseFragment() {
 
             val decoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
             addItemDecoration(decoration)
-
-            addOnScrollListener(object : RecyclerView.OnScrollListener(){
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-                    if (mLayoutManager.findLastVisibleItemPosition() == detailsAdapter.itemCount - 1) {
-                        pageNumber += 1
-                        Log.d("crypto fragment", pageNumber.toString())
-                        viewModel.coinId?.let {
-                            viewModel.getExchangeData(it, pageNumber)
-                        }
-                    }
-                }
-            })
         }
 
         binding.swipeToRefresh.setOnRefreshListener {

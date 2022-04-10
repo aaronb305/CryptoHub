@@ -45,7 +45,11 @@
         android:id="@+id/detailsFragment2"
         android:name="com.example.cryptohub.views.CoinDetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment2_to_cryptocurrency"
+            app:destination="@id/cryptocurrency" />
+    </fragment>
     <fragment
         android:id="@+id/exchangeDetailsFragment2"
         android:name="com.example.cryptohub.views.ExchangeDetailsFragment"

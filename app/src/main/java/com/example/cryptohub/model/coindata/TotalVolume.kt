@@ -5,125 +5,125 @@ import com.google.gson.annotations.SerializedName
 
 data class TotalVolume(
     @SerializedName("aed")
-    val aed: Long,
+    val aed: Double,
     @SerializedName("ars")
-    val ars: Long,
+    val ars: Double,
     @SerializedName("aud")
-    val aud: Long,
+    val aud: Double,
     @SerializedName("bch")
-    val bch: Int,
+    val bch: Double,
     @SerializedName("bdt")
-    val bdt: Long,
+    val bdt: Double,
     @SerializedName("bhd")
-    val bhd: Long,
+    val bhd: Double,
     @SerializedName("bits")
-    val bits: Long,
+    val bits: Double,
     @SerializedName("bmd")
-    val bmd: Long,
+    val bmd: Double,
     @SerializedName("bnb")
-    val bnb: Int,
+    val bnb: Double,
     @SerializedName("brl")
-    val brl: Long,
+    val brl: Double,
     @SerializedName("btc")
-    val btc: Int,
+    val btc: Double,
     @SerializedName("cad")
-    val cad: Long,
+    val cad: Double,
     @SerializedName("chf")
-    val chf: Long,
+    val chf: Double,
     @SerializedName("clp")
-    val clp: Long,
+    val clp: Double,
     @SerializedName("cny")
-    val cny: Long,
+    val cny: Double,
     @SerializedName("czk")
-    val czk: Long,
+    val czk: Double,
     @SerializedName("dkk")
-    val dkk: Long,
+    val dkk: Double,
     @SerializedName("dot")
-    val dot: Int,
+    val dot: Double,
     @SerializedName("eos")
-    val eos: Long,
+    val eos: Double,
     @SerializedName("eth")
-    val eth: Int,
+    val eth: Double,
     @SerializedName("eur")
-    val eur: Long,
+    val eur: Double,
     @SerializedName("gbp")
-    val gbp: Long,
+    val gbp: Double,
     @SerializedName("hkd")
-    val hkd: Long,
+    val hkd: Double,
     @SerializedName("huf")
-    val huf: Long,
+    val huf: Double,
     @SerializedName("idr")
-    val idr: Long,
+    val idr: Double,
     @SerializedName("ils")
-    val ils: Long,
+    val ils: Double,
     @SerializedName("inr")
-    val inr: Long,
+    val inr: Double,
     @SerializedName("jpy")
-    val jpy: Long,
+    val jpy: Double,
     @SerializedName("krw")
-    val krw: Long,
+    val krw: Double,
     @SerializedName("kwd")
-    val kwd: Long,
+    val kwd: Double,
     @SerializedName("link")
-    val link: Int,
+    val link: Double,
     @SerializedName("lkr")
-    val lkr: Long,
+    val lkr: Double,
     @SerializedName("ltc")
-    val ltc: Int,
+    val ltc: Double,
     @SerializedName("mmk")
-    val mmk: Long,
+    val mmk: Double,
     @SerializedName("mxn")
-    val mxn: Long,
+    val mxn: Double,
     @SerializedName("myr")
-    val myr: Long,
+    val myr: Double,
     @SerializedName("ngn")
-    val ngn: Long,
+    val ngn: Double,
     @SerializedName("nok")
-    val nok: Long,
+    val nok: Double,
     @SerializedName("nzd")
-    val nzd: Long,
+    val nzd: Double,
     @SerializedName("php")
-    val php: Long,
+    val php: Double,
     @SerializedName("pkr")
-    val pkr: Long,
+    val pkr: Double,
     @SerializedName("pln")
-    val pln: Long,
+    val pln: Double,
     @SerializedName("rub")
-    val rub: Long,
+    val rub: Double,
     @SerializedName("sar")
-    val sar: Long,
+    val sar: Double,
     @SerializedName("sats")
-    val sats: Long,
+    val sats: Double,
     @SerializedName("sek")
-    val sek: Long,
+    val sek: Double,
     @SerializedName("sgd")
-    val sgd: Long,
+    val sgd: Double,
     @SerializedName("thb")
-    val thb: Long,
+    val thb: Double,
     @SerializedName("try")
-    val tryX: Long,
+    val tryX: Double,
     @SerializedName("twd")
-    val twd: Long,
+    val twd: Double,
     @SerializedName("uah")
-    val uah: Long,
+    val uah: Double,
     @SerializedName("usd")
-    val usd: Long,
+    val usd: Double,
     @SerializedName("vef")
-    val vef: Long,
+    val vef: Double,
     @SerializedName("vnd")
-    val vnd: Long,
+    val vnd: Double,
     @SerializedName("xag")
-    val xag: Int,
+    val xag: Double,
     @SerializedName("xau")
-    val xau: Int,
+    val xau: Double,
     @SerializedName("xdr")
-    val xdr: Long,
+    val xdr: Double,
     @SerializedName("xlm")
-    val xlm: Long,
+    val xlm: Double,
     @SerializedName("xrp")
-    val xrp: Long,
+    val xrp: Double,
     @SerializedName("yfi")
-    val yfi: Int,
+    val yfi: Double,
     @SerializedName("zar")
-    val zar: Long
+    val zar: Double
 )

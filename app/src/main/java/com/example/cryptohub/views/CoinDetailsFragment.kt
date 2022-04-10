@@ -57,7 +57,7 @@ class CoinDetailsFragment : BaseFragment() {
         }
 
         binding.backButton.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.mainFragment)
         }
         // Inflate the layout for this fragment
         return binding.root

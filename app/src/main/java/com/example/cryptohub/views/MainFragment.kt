@@ -31,11 +31,6 @@ class MainFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-//        Log.d("main fragment", navController.graph.startDestDisplayName)
-//        binding.navBarHomeScreen.setupWithNavController(
-//            requireActivity().findNavController(R.id.homeContainer)
-//        )
-
         binding.homeContainer.apply {
             adapter = TabAdapter(childFragmentManager, lifecycle)
             isSaveEnabled = false

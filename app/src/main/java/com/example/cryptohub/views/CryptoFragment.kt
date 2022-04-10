@@ -29,6 +29,8 @@ class CryptoFragment : BaseFragment() {
         })
     }
 
+    private var notCalled : Boolean = true
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,9 +52,12 @@ class CryptoFragment : BaseFragment() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     if (mLayoutManager.findLastVisibleItemPosition() == cryptoAdapter.itemCount - 1) {
-                        pageNumber += 1
-                        Log.d("crypto fragment", pageNumber.toString())
-                        viewModel.getCoinsByMarketCap(pageNumber)
+                        if (notCalled) {
+                            notCalled = false
+                            pageNumber += 1
+                            Log.d("crypto fragment", pageNumber.toString())
+                            viewModel.getCoinsByMarketCap(pageNumber)
+                        }
                     }
                 }
             })
@@ -84,6 +89,7 @@ class CryptoFragment : BaseFragment() {
                     binding.swipeToRefresh.isRefreshing = false
                     val coins = it.response as List<CoinItem>
                     cryptoAdapter.updateCoins(coins)
+                    notCalled = true
                     viewModel.resetState()
                 }
                 is CoinResponse.ERROR -> {
