@@ -13,24 +13,18 @@ inline fun <In> responseTryCatch(
     onSuccess : (CoinResponse.SUCCESS<In>) -> Unit,
     onError : (CoinResponse.ERROR) -> Unit
 )  {
-    Log.d("utils", "entered response try catch")
-        try {
-            val result = response()
-            Log.d("utils", "entered response try block")
-            if (result.isSuccessful) {
-                Log.d("utils", "entered response success")
-                result.body()?.let {
-                    onSuccess(CoinResponse.SUCCESS(it))
-                } ?: throw Exception("Response is null")
-            }
-            else {
-                Log.d("utils", "entered response failed")
-                throw Exception("Unsuccessful response")
-            }
+    try {
+        val result = response()
+        if (result.isSuccessful) {
+            result.body()?.let {
+                onSuccess(CoinResponse.SUCCESS(it))
+            } ?: throw Exception("Response is null")
         }
-        catch (e: Exception) {
-            Log.d("utils", "entered response catch block")
-            Log.e("utils", e.localizedMessage)
-            onError(CoinResponse.ERROR(e))
+        else {
+            throw Exception("Unsuccessful response")
         }
+    }
+    catch (e: Exception) {
+        onError(CoinResponse.ERROR(e))
+    }
 }

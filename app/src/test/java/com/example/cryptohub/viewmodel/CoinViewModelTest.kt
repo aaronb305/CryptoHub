@@ -2,6 +2,7 @@ package com.example.cryptohub.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.cryptohub.model.coinchartdata.CoinChartData
+import com.example.cryptohub.model.coindata.CoinData
 import com.example.cryptohub.model.coinsbymarketcap.CoinItem
 import com.example.cryptohub.model.derivatives.DerivativeExchange
 import com.example.cryptohub.model.derivatives.DerivativeExchangeData
@@ -157,6 +158,68 @@ class CoinViewModelTest {
         }
         // Action
         target.getCoinsByMarketCap()
+
+        // Assert
+        assertThat(stateList).isNotEmpty()
+        assertThat(stateList).hasSize(3)
+        assertThat(stateList[0]).isInstanceOf(CoinResponse.LOADING::class.java)
+        assertThat(stateList[1]).isInstanceOf(CoinResponse.LOADING::class.java)
+        assertThat(stateList[2]).isInstanceOf(CoinResponse.SUCCESS::class.java)
+    }
+
+    @Test
+    fun `get coins by id when trying to load from server returns loading state`() {
+        // AAA
+        // Assign
+        val stateList = mutableListOf<CoinResponse>()
+        target.coinData.observeForever {
+            stateList.add(it)
+        }
+        // Action
+        target.getCoinById("")
+
+        // Assert
+        assertThat(stateList).isNotEmpty()
+        assertThat(stateList).hasSize(2)
+        assertThat(stateList[0]).isInstanceOf(CoinResponse.LOADING::class.java)
+        assertThat(stateList[1]).isInstanceOf(CoinResponse.LOADING::class.java)
+    }
+
+    @Test
+    fun `get coins by id when trying to load from server returns error state`() {
+        // AAA
+        // Assign
+        val stateList = mutableListOf<CoinResponse>()
+        every { mockRepository.getCoinData("") } returns flowOf(
+            CoinResponse.ERROR(Exception("Error"))
+        )
+        target.coinData.observeForever {
+            stateList.add(it)
+        }
+        // Action
+        target.getCoinById("")
+
+        // Assert
+        assertThat(stateList).isNotEmpty()
+        assertThat(stateList).hasSize(3)
+        assertThat(stateList[0]).isInstanceOf(CoinResponse.LOADING::class.java)
+        assertThat(stateList[1]).isInstanceOf(CoinResponse.LOADING::class.java)
+        assertThat(stateList[2]).isInstanceOf(CoinResponse.ERROR::class.java)
+    }
+
+    @Test
+    fun `get coins by id when trying to load from server returns success state`() {
+        // AAA
+        // Assign
+        val stateList = mutableListOf<CoinResponse>()
+        every { mockRepository.getCoinData("") } returns flowOf(
+            CoinResponse.SUCCESS(mockk<CoinData>())
+        )
+        target.coinData.observeForever {
+            stateList.add(it)
+        }
+        // Action
+        target.getCoinById("")
 
         // Assert
         assertThat(stateList).isNotEmpty()
